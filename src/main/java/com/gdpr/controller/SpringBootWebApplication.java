@@ -1,4 +1,4 @@
-package com.gdpr;
+package com.gdpr.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
