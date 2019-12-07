@@ -1,4 +1,4 @@
-package com.gdpr;
+package com.gdpr.controller;
 
 import java.util.Map;
 
