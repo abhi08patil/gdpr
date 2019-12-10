@@ -39,8 +39,8 @@
 
 	 
 
-		<div  >
-			<jsp:include page="/WEB-INF/template/index.jsp" />
+		<div>
+			 <jsp:include page="/WEB-INF/template/index.jsp"/>
 		</div>
  
 	<!-- /.container -->
