@@ -4,7 +4,7 @@
  <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/gdpr/v1/welcome">
               <i class="mdi mdi-home menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -17,8 +17,8 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Data Hold</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Data hold mapping</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/gdpr/v1/datahold">Data Hold</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/gdpr/v1/dataholdmapping">Data hold mapping</a></li>
               </ul>
             </div>
           </li>
@@ -30,32 +30,32 @@
             </a>
             <div class="collapse" id="ui-report">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Pre-Deletion Report</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Future Report</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/gdpr/v1/predeletion">Pre-Deletion Report</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/gdpr/v1/future">Future Report</a></li>
               </ul>
             </div>
           </li>
          
           <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="/gdpr/v1/deletehistory">
               <i class="mdi mdi-history menu-icon"></i>
               <span class="menu-title">Deletion History</span>
             </a>
           </li>
 		  <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="/gdpr/v1/configuration">
               <i class="mdi mdi-settings-box  menu-icon"></i>
               <span class="menu-title">Configuration</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+            <a class="nav-link" href="/gdpr/v1/bqview">
               <i class="mdi mdi-database menu-icon"></i>
               <span class="menu-title">Generate base query</span>
             </a>
           </li>
 		  <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+            <a class="nav-link" href="/gdpr/v1/deleteproc">
               <i class="mdi mdi-grid-large menu-icon"></i>
               <span class="menu-title">Generate delete proc</span>
             </a>
