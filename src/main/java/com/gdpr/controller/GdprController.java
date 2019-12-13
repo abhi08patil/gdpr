@@ -1,6 +1,5 @@
 package com.gdpr.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,10 @@ public class GdprController {
 	@Autowired
 	GdprService gdprService;
 
+	
+	@Autowired
+	CreateTableService createtableservice;
+	
 	@RequestMapping("/deletehistory")
 	public String deletehistory() {
 		return "gdpr/deletehistory";
@@ -31,7 +34,16 @@ public class GdprController {
 	public String configuration() {
 		return "gdpr/configuration";
 	}
-
+	
+	@GetMapping("/createGdprTables")
+	public String createGdprTables(ModelMap model) {
+		createtableservice.createGdprTables();
+		List<String> tblList = createtableservice.fetchGdprTableList(); 
+		model.put("TableCreationMesg", "Below GDPR Tables and Sequences created successfully.");
+		model.put("tblList",tblList);
+		return "gdpr/configuration";
+	}
+	
 	@RequestMapping("/bqview")
 	public ModelAndView bqview(@RequestParam(value = "msg" , required = false) String msg) {
 		ModelAndView modelAndView = new ModelAndView("gdpr/bqview");
