@@ -98,7 +98,7 @@ public class GdprConstant {
 			+ " as "
 			+ " select hold.id, record_id, module_id, trunc(hold_start_date) as data_hold_start_date, trunc(hold_end_date) as data_hold_end_date"
 			+ " from gdpr_data_hold_mapping_mstr mapping , gdpr_data_hold_mstr hold"
-			+ " where mapping.id = mapping.data_hold_id";
+			+ " where hold.id = mapping.data_hold_id";
 	
 
 	public static final String SAVE_LEGAL_HOLD_INFO = "INSERT INTO GDPR_DATA_HOLD_MSTR"+"(ID,EXTERNAL_DATA_HOLD_ID,HOLD_TYPE,"
