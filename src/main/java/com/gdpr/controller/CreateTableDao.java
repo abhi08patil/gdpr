@@ -59,6 +59,10 @@ public class CreateTableDao  {
 			jdbcTemplate.execute(GdprConstant.DROP_GDPR_PROCESS_REQUEST_MSTR_SEQ);
 			jdbcTemplate.execute(GdprConstant.CREATE_GDPR_PROCESS_REQUEST_MSTR_SEQ);
 			
+			//new added constants 13-dec
+			jdbcTemplate.execute(GdprConstant.CREATE_GDPR_DATA_HOLD_MSTR_SEQ);
+			jdbcTemplate.execute(GdprConstant.CREATE_VIEW_gdpr_legal_hold_view);
+			
 		} catch(DataAccessException e) {
 			System.out.println("Exception in dao "+e);
 			System.out.println("Exception in dao "+e.getMostSpecificCause());
@@ -83,6 +87,25 @@ public class CreateTableDao  {
 		System.out.println("In dao list of tables "+listOfTables);
 		return listOfTables;
 	}
+	
+	public int saveDataHold(DataHoldDTO dataholdDto) {
+		int rowInsrt=0;
+		String sql = GdprConstant.SAVE_LEGAL_HOLD_INFO;
+		
+		try {
+			rowInsrt = jdbcTemplate.update(sql,new Object[] {dataholdDto.getDataHoldExtId(),dataholdDto.getDataHoldType(),dataholdDto.getDataHoldStartDt(),
+					dataholdDto.getDataHoldEndDt(),dataholdDto.getDataHoldComments(),dataholdDto.getCreatedBy(),dataholdDto.getCreatedDate(),dataholdDto.getModifiedBy(),
+					dataholdDto.getModifiedDate()
+					
+			});
+		} catch(DataAccessException e) {
+			System.out.println("Exception in dao.saveDataHold() "+e);
+		}
+		
+		return rowInsrt;
+	}
+	
+	
 	
 	
 
