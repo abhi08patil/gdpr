@@ -40,8 +40,10 @@
 						                    <button type="submit" class="btn btn-primary mb-2">Create</button>
 						                    <a class="btn btn-primary mb-2" href="/gdpr/v1/welcome">Cancel</a>
 						                    <c:if test="${not empty TableCreationMesg}">
-						                    		${TableCreationMesg}
-						                    </c:if>
+						                  	     	<div class="alert alert-success alert-dismissible"><strong>${TableCreationMesg}</strong>
+								                  		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								                  	</div>
+									        </c:if>
 						                    
 						                    <c:forEach items="${tblList}" var="tableList">
 						                    	<p>${tableList}</p>
