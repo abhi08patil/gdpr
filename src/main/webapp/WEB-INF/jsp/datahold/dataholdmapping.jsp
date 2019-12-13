@@ -47,20 +47,20 @@
                 <div class="card-body">
                   <h4 class="card-title">Module Details</h4>
                   <div class="table-responsive pt-3">
-                    <table class="table table-bordered">
+                    <!--  <table class="table table-bordered">
                       <thead>
                         <tr>
                           <th>
-                            First name
+                            Column1
                           </th>
                           <th>
-                            Progress
+                            Column2
                           </th>
                           <th>
-                            Amount
+                            Column3
                           </th>
                           <th>
-                            Deadline
+                            Column4
                           </th>
                         </tr>
                       </thead>
@@ -84,7 +84,7 @@
                       
                         
                       </tbody>
-                    </table>
+                    </table>-->
                   </div>
                 </div>
               </div>
