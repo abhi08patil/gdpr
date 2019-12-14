@@ -36,26 +36,14 @@
 						                    Please click on Create button to generate GDPR configurations tables.
 						                  </p>
 						                  <s:form action="/gdpr/v1/createGdprTables" method="get">
-						                    <!-- <label class="sr-only" for="inlineFormInputName2">Name</label>
-						                    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe">
-						                  
-						                    <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-						                    <div class="input-group mb-2 mr-sm-2">
-						                      <div class="input-group-prepend">
-						                        <div class="input-group-text">@</div>
-						                      </div>
-						                      <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
-						                    </div>
-						                    <div class="form-check mx-sm-2">
-						                      <label class="form-check-label">
-						                        <input type="checkbox" class="form-check-input" checked>
-						                        Remember me
-						                      </label>
-						                    </div> -->
+						                    
 						                    <button type="submit" class="btn btn-primary mb-2">Create</button>
+						                    <a class="btn btn-primary mb-2" href="/gdpr/v1/welcome">Cancel</a>
 						                    <c:if test="${not empty TableCreationMesg}">
-						                    		${TableCreationMesg}
-						                    </c:if>
+						                  	     	<div class="alert alert-success alert-dismissible"><strong>${TableCreationMesg}</strong>
+								                  		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								                  	</div>
+									        </c:if>
 						                    
 						                    <c:forEach items="${tblList}" var="tableList">
 						                    	<p>${tableList}</p>
