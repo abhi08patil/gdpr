@@ -50,6 +50,21 @@
 														</c:if>
 													</select>
 												</div>
+												<c:if test="${not empty msg}">
+													<div class="alert alert-success alert-dismissible" id="msg">
+														<a href="#" class="close" data-dismiss="alert"
+															aria-label="close">&times;</a> <strong>Success!</strong>${msg}
+
+													</div>
+												</c:if>
+												<c:if test="${not empty error}">
+													<div class="alert alert-danger alert-dismissible" id="msg">
+														<a href="#" class="close" data-dismiss="alert"
+															aria-label="close">&times;</a> <strong>Failed!</strong>${error}
+
+													</div>
+												</c:if>
+
 
 
 												<div class="form-group">
@@ -86,11 +101,7 @@
 						</div>
 					</div>
 					<div class="content-wrapper">
-					<c:if test="${not empty msg}">
-
-								<h5 id="msg">${msg}</h5>
-
-							</c:if>
+				
 				</div>
 
 				</div>

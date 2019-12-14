@@ -66,28 +66,62 @@ public class GdprController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/gdpr/v1/bqview");
 		if (checkboxValue.length <= 1) {
 			msg = "Please select 2 columns";
+			modelAndView.addObject("error", msg);
 		}
 		else
 		{
 			msg = gdprService.createBaseQuery(checkboxValue, moduleName, retention, tableName);
+			if(msg.contains("Failed"))
+				modelAndView.addObject("error", msg);
+			else
+				modelAndView.addObject("msg", msg);
 		}
-		modelAndView.addObject("msg", msg);
+		
 		return modelAndView;
 	}
 	
 	
 	@RequestMapping("/getConfigNames")
-	public ModelAndView getConfigNames(@RequestParam(value = "msg" , required = false) String msg) {
+	public ModelAndView getConfigNames(@RequestParam(value = "msg" , required = false) String msg,@RequestParam(value = "error" , required = false) String error) {
 		ModelAndView modelAndView = new ModelAndView("gdpr/bqview");
 		modelAndView.addObject("msg", msg);
+		modelAndView.addObject("error", error);
 		modelAndView.addObject("lists", gdprService.findAllTables());
 		return modelAndView;
 	}
 
 	@RequestMapping("/deleteproc")
-	public ModelAndView deleteproc() {
+	public ModelAndView deleteproc(@RequestParam(value = "msg" , required = false) String msg,@RequestParam(value = "error" , required = false) String error) {
 		ModelAndView modelAndView = new ModelAndView("gdpr/deleteproc");
+		modelAndView.addObject("msg", msg);
+		modelAndView.addObject("error", error);
 		modelAndView.addObject("map", gdprService.findAllConfigs());
+		return modelAndView;
+	}
+	
+	@PostMapping("/getTableHierarchy")
+	public @ResponseBody Object getTableHierarchy(@RequestParam("tableName") String tableName ,ModelMap model) {
+		return gdprService.findTableHierarchy(tableName);
+	}
+	
+	@PostMapping("/generateDeleteProc")
+	public ModelAndView generateDeleteProc(@RequestParam("test") String[] checkboxValue,
+			@RequestParam("tableName") String tableName ,ModelMap model) {
+		String msg = null;
+		ModelAndView modelAndView = new ModelAndView("redirect:/gdpr/v1/deleteproc");
+		if (checkboxValue.length == 0) {
+			msg = "Please select at least 1 column";
+			modelAndView.addObject("error", msg);
+		}
+		else
+		{
+			msg = gdprService.generateDeleteProc(checkboxValue, tableName);
+			if(msg.contains("Failed"))
+				modelAndView.addObject("error", msg);
+			else
+				modelAndView.addObject("msg", msg);
+		}
+		
 		return modelAndView;
 	}
 

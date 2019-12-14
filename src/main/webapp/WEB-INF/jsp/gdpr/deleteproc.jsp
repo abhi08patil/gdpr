@@ -29,11 +29,12 @@
 
 							
 							<div class="row">
+								
 								<div class="col-md-6 grid-margin stretch-card">
 									<div class="card">
 										<div class="card-body">
 											<h4 class="card-title"></h4>
-											<form action="/gdpr/v1/createBq" method="post" class="forms-sample">
+											<form action="/gdpr/v1/generateDeleteProc" method="post" class="forms-sample">
 												<div class="form-group">
 													<select class="form-control" name="tableName" id="exampleFormControlSelect1"
 														style="outline: 1px solid #0a0a0a; color: black;">
@@ -50,7 +51,22 @@
 													</select>
 												</div>
 
+												<c:if test="${not empty msg}">
+													<div class="alert alert-success alert-dismissible" id="msg">
+														<a href="#" class="close" data-dismiss="alert"
+															aria-label="close">&times;</a> <strong>Success!</strong>${msg}
 
+													</div>
+												</c:if>
+												<c:if test="${not empty error}">
+													<div class="alert alert-danger alert-dismissible" id="msg">
+														<a href="#" class="close" data-dismiss="alert"
+															aria-label="close">&times;</a> <strong>Failed!</strong>${error}
+
+													</div>
+												</c:if>
+												
+												
 												<div class="form-group">
 													<div class="table-responsive">
 														<table class="table table-striped" id="tableData">
@@ -64,14 +80,6 @@
 													</div>
 												</div>
 												<div id="groupButton" style="display:none">
-												<div class="form-group">
-													<label for="name">Module Name:</label> <input type="text"
-														class="form-control" id="moduleName" name="moduleName" required="true" style="outline: 1px solid #0a0a0a; color: black;">
-												</div>
-												<div class="form-group">
-													<label for="name">Retention(Months):</label> <input type="number"
-														class="form-control" id="retention" name="retention" required="true"  style="outline: 1px solid #0a0a0a; color: black;">
-												</div>
 												<button type="submit" class="btn btn-primary mr-2">Submit</button>
 												<button class="btn btn-light">Cancel</button>
 												</div>
@@ -84,7 +92,9 @@
 
 						</div>
 					</div>
-					<div class="content-wrapper"></div>
+					<div class="content-wrapper">
+						
+					</div>
 
 				</div>
 				<jsp:include page="/WEB-INF/jsp/component/footer.jsp"/>
@@ -109,8 +119,8 @@
 									var data = null;
 									$
 											.ajax({
-												type : "GET",
-												url : "/gdpr/v1/getColumns?tableName="
+												type : "POST",
+												url : "/gdpr/v1/getTableHierarchy?tableName="
 														+ selectedTable,
 												contentType : 'application/json',
 												async : false,
@@ -121,24 +131,19 @@
 													$(
 															'#tableData tbody')
 															.empty();
-													html = "<tr><th>Column Name</th><th>Data type</th><th>select</th></tr>";
+													html = "<tr><th>Table Name</th><th>Select</th></tr>";
 													for ( var key in data) {
 														if (data
 																.hasOwnProperty(key)) {
 															html += "<tr><td>"
 																	+ key
-																	+ "</td><td>"
-																	+ data[key]
 																	+ "</td><td><input class='columns' type='checkbox' name='test'  id='test' value='"+key+"-"+data[key]+"' /></td></tr>";
 														}
 													}
 
-													$('#tableData')
-															.append(
-																	html);
-													$(
-															'#groupButton')
-															.show();
+													$('#tableData') .append( html);
+													$('#groupButton') .show();
+													 
 												},
 												error : function() {
 													alert(

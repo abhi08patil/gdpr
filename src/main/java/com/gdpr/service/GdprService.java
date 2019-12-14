@@ -30,9 +30,22 @@ public interface GdprService {
 			String tableName);
 	
 	/**
-	 * @return as List<String>
+	 * @return as HashMap<String, String>
 	 */
 	public HashMap<String, String>  findAllConfigs();
+	
+	/**
+	 * @return as HashMap<String, String>
+	 */
+	public HashMap<String, String>  findTableHierarchy(String tableName);
+	
+	/**
+	 * @param checkboxValue as String[]
+	 * @param tableName as String
+	 * @return
+	 */
+	public String generateDeleteProc(String[] checkboxValue, 
+			String tableName);
 	
 
 }

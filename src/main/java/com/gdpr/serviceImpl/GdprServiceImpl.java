@@ -1,6 +1,7 @@
 package com.gdpr.serviceImpl;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -61,7 +62,33 @@ public class GdprServiceImpl implements GdprService {
 	
 	@Override
 	public HashMap<String, String>  findAllConfigs() {
-		// TODO Auto-generated method stub
 		return gdprDao.findAllConfigs();
+	}
+	
+	@Override
+	public LinkedHashMap<String, String> findTableHierarchy(String tableName) {
+		return (LinkedHashMap<String, String>) gdprDao.findTableHierarchy(tableName);
+	}
+	
+	@Override
+	public String generateDeleteProc(String[] checkboxValue, String tableName) {
+		
+		String moduleId = gdprDao.getModuleId(tableName);
+		StringBuilder sb = new StringBuilder();
+		String deleteProcName= "GDPR_DATA_DEL_"+moduleId;
+		if(deleteProcName.length()>30)
+		{
+			deleteProcName = deleteProcName.substring(0, 29);
+		}
+		
+		sb.append("CREATE OR REPLACE PROCEDURE "+deleteProcName+" (P_RECORD_ID VARCHAR2) IS  BEGIN SAVEPOINT POINT1;");
+		for (int i = 0; i < checkboxValue.length; i++) {
+			String data[] = checkboxValue[i].split("-");
+			sb.append(data[1]);
+		}
+		sb.append("EXCEPTION WHEN OTHERS THEN ROLLBACK TO POINT1; RAISE; END;");
+		System.out.println(sb.toString());
+		
+		return gdprDao.generateDeleteProc(sb.toString(),moduleId,deleteProcName);
 	}
 }

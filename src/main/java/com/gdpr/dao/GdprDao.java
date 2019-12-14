@@ -29,8 +29,26 @@ public interface GdprDao {
 			String baseQuery,String retention,String moduleName, String tableName);
 	
 	/**
-	 * @return as List<String>
+	 * @return as HashMap<String, String>
 	 */
 	public HashMap<String, String> findAllConfigs();
+	
+	
+	/**
+	 * @return as HashMap<String, String>
+	 */
+	public HashMap<String, String>  findTableHierarchy(String tableName);
+	
+	/**
+	 * @param deleteProc as String
+	 * @return
+	 */
+	public String generateDeleteProc(String deleteProc,String moduleId, String deleteProcName);
+	
+	/**
+	 * @param tableName as String
+	 * @return as String
+	 */
+	public String getModuleId(String tableName);
 	
 }
